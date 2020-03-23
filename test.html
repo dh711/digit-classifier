@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    {% load static %}
+    <script src="{% static "Javascript/FileSaver.js" %}"></script>
+    <script>
+        var oldx, oldy, x, y, canvas, ctx, start;
+
+        function init() {
+            canvas = document.getElementById("input")
+            ctx = canvas.getContext("2d");
+	        ctx.fillStyle = "#000000";
+	        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        function draw(e) {
+            x = e.clientX;
+            y = e.clientY;
+            var coor = "Coordinates: (" + x + "," + y + ")";
+            document.getElementById("para2").innerHTML = coor;
+            coor = "Coordinates: (" + oldx + "," + oldy + ")";
+            document.getElementById("para1").innerHTML = coor;
+	        ctx.lineCap = "round";	
+	        ctx.strokeStyle = "#FFFFFF";
+	        ctx.lineWidth = 10;
+            ctx.moveTo(oldx, oldy);
+            ctx.lineTo(x,y);
+            ctx.stroke();
+            oldx = x;
+            oldy = y;
+        }
+        function mouseMove(e) {
+            if (start == 1) {
+                draw(e);
+            }
+        }
+
+        function mouseDown(e) {
+            start = 1;
+            document.getElementById("para3").innerHTML = start;
+            oldx = e.clientX;
+            oldy = e.clientY;
+        }
+
+        function mouseUp(e) {
+            start = 0;
+            document.getElementById("para3").innerHTML = start;
+        }
+
+        function saveCanvas() {
+            canvas.toBlob(function(blob) {
+                saveAs(blob, "image.png");
+            });
+        }
+    </script>
+</head>
+<body onload="init()">
+    <canvas id="input" width="400" height="300p" style="border: 1px solid #c3c3c3;" onmousemove="mouseMove(event)" onmousedown="mouseDown(event)" onmouseup="mouseUp(event)"></canvas>
+    <p id="para1"></p>
+    <p id="para2"></p>
+    <p id="para3"></p>
+    <button type="submit" onclick="saveCanvas()">Save</button>
+</body>
+</html>
