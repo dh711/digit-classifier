@@ -1,0 +1,56 @@
+from django.shortcuts import render
+from PIL import Image
+import os
+import pandas as pd
+import numpy as np
+from joblib import load
+
+# Create your views here.
+
+def process_pred(pred):
+    """
+    This function returnns the digit predicted
+    by the model.
+    """
+    return np.argmax(pred)
+
+def resize_center_image(old_im):
+    old_im = old_im.resize((20,20))
+    old_size = old_im.size
+
+    new_size = (28, 28)
+    new_im = Image.new("L", new_size) 
+    new_im.paste(old_im, (4,4))
+
+    return new_im
+
+def process_image(image_path):
+    """
+    Processes the given image.
+    """
+    im = Image.open(image_path)
+    im = resize_center_image(im)
+    return pd.DataFrame(np.asarray(im).flatten().astype(float)/255).T
+
+def show_image(image_path):
+    """
+    Displays processed image.
+    """
+    im = Image.open(image_path)
+    im = resize_center_image(im)
+    return im
+
+def digits(request):
+    if (request.method == 'POST'):
+        imagePath = '/home/dhwanil/Downloads/image.png'
+        # img = Image.open(imagePath)
+        # img = resize_center_image(img)
+        # img.show()
+        model = load('digits/static/model/digit_classifier_t1.joblib')
+        result = process_pred(model.predict(process_image(imagePath)))
+        # print(os.listdir())
+        print(result)
+        os.remove(imagePath)
+        return render(request, 'test.html', {'result': result})
+    else:
+        return render(request, 'test.html')
