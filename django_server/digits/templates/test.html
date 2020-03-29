@@ -18,10 +18,6 @@
         function draw(e) {
             x = e.clientX;
             y = e.clientY;
-            var coor = "Coordinates: (" + x + "," + y + ")";
-            document.getElementById("para2").innerHTML = coor;
-            coor = "Coordinates: (" + oldx + "," + oldy + ")";
-            document.getElementById("para1").innerHTML = coor;
 	        ctx.lineCap = "round";	
 	        ctx.strokeStyle = "#FFFFFF";
 	        ctx.lineWidth = 10;
@@ -39,14 +35,12 @@
 
         function mouseDown(e) {
             start = 1;
-            document.getElementById("para3").innerHTML = start;
             oldx = e.clientX;
             oldy = e.clientY;
         }
 
         function mouseUp(e) {
             start = 0;
-            document.getElementById("para3").innerHTML = start;
         }
 
         function saveCanvas() {
@@ -54,14 +48,22 @@
                 saveAs(blob, "image.png");
             });
         }
+
+        function clearCanvas() {
+            // ctx.fillStyle = "#000000";
+	        ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath()
+            init()
+        }
     </script>
 </head>
 <body onload="init()">
-    <canvas id="input" width="300" height="300" style="border: 1px solid #c3c3c3;" onmousemove="mouseMove(event)" onmousedown="mouseDown(event)" onmouseup="mouseUp(event)"></canvas>
+    <canvas id="input" width="200" height="200" style="border: 1px solid #c3c3c3;" onmousemove="mouseMove(event)" onmousedown="mouseDown(event)" onmouseup="mouseUp(event)"></canvas>
     <p id="para1"></p>
     <p id="para2"></p>
     <p id="para3"></p>
     <!-- <button type="submit" onclick="saveCanvas()">Save</button> -->
+    <button onclick="clearCanvas()">Clear</button>
     <form action="" method="post" onsubmit="saveCanvas()">
         {% csrf_token %}
         <input type="submit" name="Predict" id="submit" value="Predict">
