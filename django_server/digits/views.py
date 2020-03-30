@@ -4,7 +4,6 @@ import os
 import pandas as pd
 import numpy as np
 from joblib import load
-import time
 
 # Create your views here.
 
@@ -43,11 +42,9 @@ def show_image(image_path):
 
 def digits(request):
     if (request.method == 'POST'):
-        time.sleep(1)
-        imagePath = '/home/dhwanil/Downloads/image.png'
+        image = request.FILES['image']
         model = load('digits/static/model/digit_classifier_t2_256256.joblib')
-        result = process_pred(model.predict(process_image(imagePath)))
-        os.remove(imagePath)
-        return render(request, 'test.html', {'result': result})
+        result = process_pred(model.predict(process_image(image)))
+        return render(request, 'result.html', {'result': result})
     else:
         return render(request, 'test.html')

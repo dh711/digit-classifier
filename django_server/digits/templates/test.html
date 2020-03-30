@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
-    {% load static %}
-    <script src="{% static "Javascript/FileSaver.js" %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         var oldx, oldy, x, y, canvas, ctx, start;
 
@@ -44,13 +43,30 @@
         }
 
         function saveCanvas() {
-            canvas.toBlob(function(blob) {
-                saveAs(blob, "image.png");
+            dataURL = canvas.toDataURL("image/png");
+            var blobBin = atob(dataURL.split(',')[1]);
+            var array = [];
+            for(var i = 0; i < blobBin.length; i++) {
+                array.push(blobBin.charCodeAt(i));
+            }
+            var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
+            var formdata = new FormData();
+            formdata.append("image", file);
+            formdata.append("csrfmiddlewaretoken", "{{ csrf_token }}")
+            $.ajax({
+                url: "",
+                type: "POST",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success:function(data) {
+                    console.log(data);
+                    $('#result').html(data)
+                }
             });
         }
 
         function clearCanvas() {
-            // ctx.fillStyle = "#000000";
 	        ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.beginPath()
             init()
@@ -62,12 +78,9 @@
     <p id="para1"></p>
     <p id="para2"></p>
     <p id="para3"></p>
-    <!-- <button type="submit" onclick="saveCanvas()">Save</button> -->
     <button onclick="clearCanvas()">Clear</button>
-    <form action="" method="post" onsubmit="saveCanvas()">
-        {% csrf_token %}
-        <input type="submit" name="Predict" id="submit" value="Predict">
-    </form>
-    <h1>You have entered: {{ result }}</h1>
+    <button type="submit" onclick="saveCanvas()">Predict</button>
+    <br><br>
+    <div style="font-size: 2em;"><p style="display: inline;">You Have Entered:&nbsp;</p><p style="display: inline;" id="result"></p></div>
 </body>
 </html>
