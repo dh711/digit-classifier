@@ -15,8 +15,8 @@
 	        ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
         function draw(e) {
-            x = e.clientX;
-            y = e.clientY;
+            x = e.offsetX;
+            y = e.offsetY;
 	        ctx.lineCap = "round";	
 	        ctx.strokeStyle = "#FFFFFF";
 	        ctx.lineWidth = 10;
@@ -34,8 +34,8 @@
 
         function mouseDown(e) {
             start = 1;
-            oldx = e.clientX;
-            oldy = e.clientY;
+            oldx = e.offsetX;
+            oldy = e.offsetY;
         }
 
         function mouseUp(e) {
@@ -74,10 +74,8 @@
     </script>
 </head>
 <body onload="init()">
-    <canvas id="input" width="200" height="200" style="border: 1px solid #c3c3c3;" onmousemove="mouseMove(event)" onmousedown="mouseDown(event)" onmouseup="mouseUp(event)"></canvas>
-    <p id="para1"></p>
-    <p id="para2"></p>
-    <p id="para3"></p>
+    <h1>PSC Project</h1>
+    <canvas id="input" width="200" height="200" style="border: 1px solid #c3c3c3;" onmousemove="mouseMove(event)" onmousedown="mouseDown(event)" onmouseup="mouseUp(event)"></canvas><br><br>
     <button onclick="clearCanvas()">Clear</button>
     <button type="submit" onclick="saveCanvas()">Predict</button>
     <br><br>
