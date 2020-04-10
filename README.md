@@ -2,6 +2,7 @@
 
 <div align+"center">
 ![](https://media.giphy.com/media/fUSvaTviTzAnIl6HQL/giphy.gif)
+</div>
 ![](https://media.giphy.com/media/Ws4MkeBVauKLkuQEvB/giphy.gif)
 </div>
 
