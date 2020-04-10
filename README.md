@@ -1,6 +1,6 @@
 # digit-classifier.
 
-![https://media.giphy.com/media/fUSvaTviTzAnIl6HQL/giphy.gif]
+![](https://media.giphy.com/media/fUSvaTviTzAnIl6HQL/giphy.gif)
 
 Handwritten Digit Recognition using the MNIST dataset.
 
