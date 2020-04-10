@@ -13,7 +13,7 @@ Dataset from: https://www.kaggle.com/oddrationale/mnist-in-csv
 * pillow v7.0.0
 * django v3.0.3
 
-## setup and deployment.
+### setup and deployment.
 1. Setup an environment with the above mentioned libraries.
 2. Clone the repository.
 3. To launch the server, navigate to `django-server/`
