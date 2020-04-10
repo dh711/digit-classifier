@@ -19,7 +19,7 @@ Dataset from: https://www.kaggle.com/oddrationale/mnist-in-csv
 ### setup and deployment.
 1. Setup an environment with the above mentioned libraries.
 2. Clone the repository.
-3. To launch the server, navigate to `django-server/`
+3. To launch the server, navigate to `django-server/django-server/`
 4. In terminal, run `python manage.py runserver` to start the server.
-5. Open your browser and go to `localhost:8000/digits/` or `http://127.0.0.1:8000/digits/`
+5. Open your browser and go to `localhost:8000/digits/` or `127.0.0.1:8000/digits/`
 6. Draw desired digit and click `PREDICT` to get an answer.
