@@ -1,7 +1,7 @@
 # digit-classifier.
 
 <img src="https://media.giphy.com/media/fUSvaTviTzAnIl6HQL/giphy.gif" align="center">
-![](https://media.giphy.com/media/Ws4MkeBVauKLkuQEvB/giphy.gif)
+<img src="https://media.giphy.com/media/Ws4MkeBVauKLkuQEvB/giphy.gif" align="center">
 
 Handwritten Digit Recognition using the MNIST dataset.
 
