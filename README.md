@@ -1,7 +1,10 @@
 # digit-classifier.
 
+<div align+"center">
 ![](https://media.giphy.com/media/fUSvaTviTzAnIl6HQL/giphy.gif)
 ![](https://media.giphy.com/media/Ws4MkeBVauKLkuQEvB/giphy.gif)
+</div>
+
 Handwritten Digit Recognition using the MNIST dataset.
 
 Dataset from: https://www.kaggle.com/oddrationale/mnist-in-csv
