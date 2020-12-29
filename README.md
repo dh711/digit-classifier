@@ -23,3 +23,4 @@ Dataset from: https://www.kaggle.com/oddrationale/mnist-in-csv
 4. In terminal, run `python manage.py runserver` to start the server.
 5. Open your browser and go to `localhost:8000/digits/` or `127.0.0.1:8000/digits/`
 6. Draw desired digit and click `PREDICT` to get an answer.
+7. The output of the program will be printed on the bottom of the drawing window.
