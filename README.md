@@ -1,5 +1,7 @@
 # digit-classifier.
 
+[![Run on Repl.it](https://repl.it/badge/github/dh711/digit-classifier)](https://repl.it/github/dh711/digit-classifier)
+
 <img src="https://media.giphy.com/media/fUSvaTviTzAnIl6HQL/giphy.gif" align="center">
 <img src="https://media.giphy.com/media/Ws4MkeBVauKLkuQEvB/giphy.gif" align="center">
 

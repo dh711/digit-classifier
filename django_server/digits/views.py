@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 from joblib import load
+from django.contrib.staticfiles.storage import staticfiles_storage
 
 # Create your views here.
 
@@ -43,8 +44,9 @@ def show_image(image_path):
 def digits(request):
     if (request.method == 'POST'):
         image = request.FILES['image']
-        model = load('digits/static/model/digit_classifier_t2_256256.joblib')
+        model = load(staticfiles_storage.path("model/digit_classifier_t2_256256.joblib"))
         result = process_pred(model.predict(process_image(image)))
         return render(request, 'result.html', {'result': result})
     else:
+        print(staticfiles_storage.path("model/digit_classifier_t2_256256.joblib"))
         return render(request, 'test.html')

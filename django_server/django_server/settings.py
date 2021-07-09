@@ -122,3 +122,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'digits/static'),
 ]
+print(BASE_DIR)
+print(STATICFILES_DIRS)
+ALLOWED_HOSTS = ['*']
+X_FRAME_OPTIONS = '*'
+STATIC_ROOT=os.path.join(BASE_DIR, "static")
